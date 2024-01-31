@@ -1,10 +1,22 @@
 function NavBar(props) {
-  const { previousClick, nextClick } = props;
+  const { pokemonList, pokemonClick } = props;
+
+  const handlePokemonClick = (item) => {
+    pokemonClick(item);
+
+    const selectedPokemon = pokemonList[item].name;
+    if (selectedPokemon === "pikachu") {
+      alert("pika pikachu !!!");
+    }
+  };
 
   return (
     <div>
-      <button onClick={previousClick}>Précédent</button>
-      <button onClick={nextClick}>Suivant</button>
+      {pokemonList.map((pokemon, item) => (
+        <button key={item} onClick={() => handlePokemonClick(item)}>
+          {pokemon.name}
+        </button>
+      ))}
     </div>
   );
 }
